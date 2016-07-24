@@ -1,0 +1,529 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="src\sip">
+      <UniqueIdentifier>{7747171b-5860-4cd5-bf5a-a458eab2c307}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\sip_code">
+      <UniqueIdentifier>{56af2fc7-4f73-4d75-bb4e-1a386fcca343}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\sip_event">
+      <UniqueIdentifier>{5ac0d4e9-f141-4f33-a180-9e593d3196d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\sip_fmt">
+      <UniqueIdentifier>{fbb7fa5e-bc92-47e9-a2e7-d2177e028a62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\sip_main">
+      <UniqueIdentifier>{77ced199-da7f-4fb4-9e2f-5cb68fef4a68}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\sip_net">
+      <UniqueIdentifier>{711656f3-26e0-4030-b56f-273cdd1565fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\sip_net\win32">
+      <UniqueIdentifier>{a8eff5ad-dfb7-4e0e-b8a4-d56357653d40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\sip_net\linux">
+      <UniqueIdentifier>{04275aff-3f42-4efa-91f6-da379a68b1a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\sip_sdp">
+      <UniqueIdentifier>{363c39aa-354b-45f4-9582-d8451f32e830}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\sip_sess">
+      <UniqueIdentifier>{b8689ddb-86fb-4824-bf6d-e57bb8f35216}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\sip_stun">
+      <UniqueIdentifier>{5521b87b-128b-45aa-9c40-c91c2f397f3e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\sip_sys">
+      <UniqueIdentifier>{a5797c61-382f-46bc-9ffc-f1351103217a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\sip_sys\win32">
+      <UniqueIdentifier>{c41637c0-8b36-4bb3-8d46-901e6334b518}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\sip_sys\linux">
+      <UniqueIdentifier>{cf90c2f7-2c7f-4e43-80d8-2ca739e9cc78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{34a3da6b-3b78-41c7-9971-421fe33da770}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\sip\addr.c">
+      <Filter>src\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip\auth.c">
+      <Filter>src\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip\cseq.c">
+      <Filter>src\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip\ctrans.c">
+      <Filter>src\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip\dialog.c">
+      <Filter>src\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip\keepalive.c">
+      <Filter>src\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip\keepalive_udp.c">
+      <Filter>src\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip\param.c">
+      <Filter>src\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip\sip.c">
+      <Filter>src\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip\sip_msg.c">
+      <Filter>src\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip\sip_reply.c">
+      <Filter>src\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip\sip_request.c">
+      <Filter>src\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip\strans.c">
+      <Filter>src\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip\transp.c">
+      <Filter>src\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip\via.c">
+      <Filter>src\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_code\b64.c">
+      <Filter>src\sip_code</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_code\crc32.c">
+      <Filter>src\sip_code</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_code\func.c">
+      <Filter>src\sip_code</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_code\hash.c">
+      <Filter>src\sip_code</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_code\hmac_sha1.c">
+      <Filter>src\sip_code</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_code\md5.c">
+      <Filter>src\sip_code</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_code\sha1.c">
+      <Filter>src\sip_code</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_code\wrap.c">
+      <Filter>src\sip_code</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_event\notify.c">
+      <Filter>src\sip_event</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_event\sipevent_listen.c">
+      <Filter>src\sip_event</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_event\sipevent_msg.c">
+      <Filter>src\sip_event</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_event\subscribe.c">
+      <Filter>src\sip_event</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_fmt\ch.c">
+      <Filter>src\sip_fmt</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_fmt\hexdump.c">
+      <Filter>src\sip_fmt</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_fmt\pl.c">
+      <Filter>src\sip_fmt</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_fmt\print.c">
+      <Filter>src\sip_fmt</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_fmt\prm.c">
+      <Filter>src\sip_fmt</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_fmt\regex.c">
+      <Filter>src\sip_fmt</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_fmt\str.c">
+      <Filter>src\sip_fmt</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_fmt\str_error.c">
+      <Filter>src\sip_fmt</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_fmt\time.c">
+      <Filter>src\sip_fmt</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_fmt\ucmp.c">
+      <Filter>src\sip_fmt</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_fmt\uri.c">
+      <Filter>src\sip_fmt</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_fmt\uric.c">
+      <Filter>src\sip_fmt</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_main\init.c">
+      <Filter>src\sip_main</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_main\main.c">
+      <Filter>src\sip_main</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_main\method.c">
+      <Filter>src\sip_main</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_net\dns_client.c">
+      <Filter>src\sip_net</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_net\dns_cstr.c">
+      <Filter>src\sip_net</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_net\dns_dname.c">
+      <Filter>src\sip_net</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_net\dns_hdr.c">
+      <Filter>src\sip_net</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_net\dns_ns.c">
+      <Filter>src\sip_net</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_net\dns_rr.c">
+      <Filter>src\sip_net</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_net\dns_rrlist.c">
+      <Filter>src\sip_net</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_net\http_auth.c">
+      <Filter>src\sip_net</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_net\http_basic.c">
+      <Filter>src\sip_net</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_net\http_digest.c">
+      <Filter>src\sip_net</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_net\http_msg.c">
+      <Filter>src\sip_net</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_net\http_server.c">
+      <Filter>src\sip_net</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_net\net.c">
+      <Filter>src\sip_net</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_net\net_if.c">
+      <Filter>src\sip_net</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_net\net_netstr.c">
+      <Filter>src\sip_net</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_net\net_ntop.c">
+      <Filter>src\sip_net</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_net\net_printaddr.c">
+      <Filter>src\sip_net</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_net\net_pton.c">
+      <Filter>src\sip_net</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_net\net_rt.c">
+      <Filter>src\sip_net</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_net\net_sa.c">
+      <Filter>src\sip_net</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_net\net_sock.c">
+      <Filter>src\sip_net</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_net\net_sockopt.c">
+      <Filter>src\sip_net</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_net\tcp.c">
+      <Filter>src\sip_net</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_net\tcp_high.c">
+      <Filter>src\sip_net</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_net\udp.c">
+      <Filter>src\sip_net</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_net\udp_mcast.c">
+      <Filter>src\sip_net</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_net\win32\srv.c">
+      <Filter>src\sip_net\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_net\win32\wif.c">
+      <Filter>src\sip_net\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_net\dns_res.c">
+      <Filter>src\sip_net\linux</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_net\linux\pif.c">
+      <Filter>src\sip_net\linux</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_sdp\format.c">
+      <Filter>src\sip_sdp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_sdp\media.c">
+      <Filter>src\sip_sdp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_sdp\sdp_attr.c">
+      <Filter>src\sip_sdp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_sdp\sdp_msg.c">
+      <Filter>src\sip_sdp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_sdp\session.c">
+      <Filter>src\sip_sdp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_sdp\str.c">
+      <Filter>src\sip_sdp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_sess\accept.c">
+      <Filter>src\sip_sess</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_sess\ack.c">
+      <Filter>src\sip_sess</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_sess\close.c">
+      <Filter>src\sip_sess</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_sess\connect.c">
+      <Filter>src\sip_sess</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_sess\info.c">
+      <Filter>src\sip_sess</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_sess\modify.c">
+      <Filter>src\sip_sess</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_sess\reg.c">
+      <Filter>src\sip_sess</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_sess\sess.c">
+      <Filter>src\sip_sess</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_sess\sipsess_listen.c">
+      <Filter>src\sip_sess</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_sess\sipsess_reply.c">
+      <Filter>src\sip_sess</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_sess\sipsess_request.c">
+      <Filter>src\sip_sess</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_stun\addr.c">
+      <Filter>src\sip_stun</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_stun\ctrans.c">
+      <Filter>src\sip_stun</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_stun\dnsdisc.c">
+      <Filter>src\sip_stun</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_stun\hdr.c">
+      <Filter>src\sip_stun</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_stun\ind.c">
+      <Filter>src\sip_stun</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_stun\keepalive.c">
+      <Filter>src\sip_stun</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_stun\rep.c">
+      <Filter>src\sip_stun</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_stun\req.c">
+      <Filter>src\sip_stun</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_stun\stun.c">
+      <Filter>src\sip_stun</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_stun\stun_attr.c">
+      <Filter>src\sip_stun</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_stun\stun_msg.c">
+      <Filter>src\sip_stun</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_stun\stunstr.c">
+      <Filter>src\sip_stun</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_sys\daemon.c">
+      <Filter>src\sip_sys</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_sys\dbg.c">
+      <Filter>src\sip_sys</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_sys\endian.c">
+      <Filter>src\sip_sys</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_sys\list.c">
+      <Filter>src\sip_sys</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_sys\mbuf.c">
+      <Filter>src\sip_sys</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_sys\mem.c">
+      <Filter>src\sip_sys</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_sys\win32\pipe.c">
+      <Filter>src\sip_sys</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_sys\rand.c">
+      <Filter>src\sip_sys</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_sys\sleep.c">
+      <Filter>src\sip_sys</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_sys\tmr.c">
+      <Filter>src\sip_sys</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_sys\win32\lock.c">
+      <Filter>src\sip_sys\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sip_sys\linux\lock.c">
+      <Filter>src\sip_sys\linux</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\sip\sip.h">
+      <Filter>src\sip</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sip_code\md5.h">
+      <Filter>src\sip_code</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sip_event\sipevent.h">
+      <Filter>src\sip_event</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sip_main\main.h">
+      <Filter>src\sip_main</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sip_net\dns.h">
+      <Filter>src\sip_net</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sip_net\net_sa.h">
+      <Filter>src\sip_net</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sip_sdp\sdp.h">
+      <Filter>src\sip_sdp</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sip_sess\sipsess.h">
+      <Filter>src\sip_sess</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sip_stun\stun.h">
+      <Filter>src\sip_stun</Filter>
+    </ClInclude>
+    <ClInclude Include="include\re.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\re_base64.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\re_crc32.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\re_dbg.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\re_dns.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\re_fmt.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\re_hash.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\re_hmac.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\re_http.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\re_httpauth.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\re_list.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\re_lock.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\re_main.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\re_mbuf.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\re_md5.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\re_mem.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\re_mqueue.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\re_net.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\re_rtp.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\re_sa.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\re_sdp.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\re_sha.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\re_sip.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\re_sipevent.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\re_sipreg.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\re_sipsess.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\re_stun.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\re_sys.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\re_tcp.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\re_tls.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\re_tmr.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\re_turn.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\re_types.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\re_udp.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\re_uri.h">
+      <Filter>include</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

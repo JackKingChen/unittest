@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{AF4E3E64-1349-400E-85EF-421C8DC11153}</ProjectGuid>
+    <RootNamespace>srtp</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)/out\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">build\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)/out\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">build\</IntDir>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>./;./include;./source;./source/platform;./source/pesq;./libpcap/include/;./libpcap/include/win32;./libpcap/include/pcap;./libsipstack/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;_CRT_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <StructMemberAlignment>4Bytes</StructMemberAlignment>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Lib>
+      <AdditionalDependencies>packet.lib;wpcap.lib;testsip.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)testbench.lib</OutputFile>
+      <AdditionalLibraryDirectories>./libpcap/lib;./libsipstack/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>Full</Optimization>
+      <AdditionalIncludeDirectories>./;./include;./source;./source/platform;./source/pesq;./libpcap/include/;./libpcap/include/win32;./libpcap/include/pcap;./libsipstack/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_LIB;_CRT_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <StructMemberAlignment>4Bytes</StructMemberAlignment>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <Lib>
+      <AdditionalDependencies>packet.lib;wpcap.lib;testsip.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)testbench.lib</OutputFile>
+      <AdditionalLibraryDirectories>./libpcap/lib;./libsipstack/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="source\host_console.cc" />
+    <ClCompile Include="source\host_csvfile.cc" />
+    <ClCompile Include="source\host_device.cc" />
+    <ClCompile Include="source\host_media.cc" />
+    <ClCompile Include="source\host_netfile.cc" />
+    <ClCompile Include="source\host_netjib.cc" />
+    <ClCompile Include="source\host_os.cc" />
+    <ClCompile Include="source\host_sip.cc" />
+    <ClCompile Include="source\host_wave.cc" />
+    <ClCompile Include="source\loadtest.cc" />
+    <ClCompile Include="source\unittest.cc" />
+    <ClCompile Include="source\platform\device_audio_phone.cc" />
+    <ClCompile Include="source\platform\device_audio_remote.cc" />
+    <ClCompile Include="source\platform\linux\linux_audio_alsa.cc">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="source\platform\linux\linux_audio_null.cc">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="source\platform\linux\linux_console.cc">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="source\platform\linux\linux_os.cc">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="source\platform\linux\linux_video_null.cc">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="source\platform\window\windows_audio.cc" />
+    <ClCompile Include="source\platform\window\windows_console.cc" />
+    <ClCompile Include="source\platform\window\windows_os.cc" />
+    <ClCompile Include="source\platform\window\windows_video.cc" />
+    <ClCompile Include="source\pesq\pesq_api.cc" />
+    <ClCompile Include="source\pesq\pesq_dsp.cc" />
+    <ClCompile Include="source\pesq\pesq_filter.cc" />
+    <ClCompile Include="source\pesq\pesq_io.cc" />
+    <ClCompile Include="source\pesq\pesq_mod.cc" />
+    <ClCompile Include="source\host_csvfile_unittest.cc" />
+    <ClCompile Include="source\host_device_unittest.cc" />
+    <ClCompile Include="source\host_netfile_unittest.cc" />
+    <ClCompile Include="source\host_sip_unittest.cc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="source\platform\device_audio.h" />
+    <ClInclude Include="source\platform\device_video.h" />
+    <ClInclude Include="source\platform\window\windows_os.h" />
+    <ClInclude Include="source\pesq\pesq_api.h" />
+    <ClInclude Include="source\pesq\pesq_dsp.h" />
+    <ClInclude Include="source\pesq\pesq_type.h" />
+    <ClInclude Include="include\host.h" />
+    <ClInclude Include="include\host_console.h" />
+    <ClInclude Include="include\host_csvfile.h" />
+    <ClInclude Include="include\host_device.h" />
+    <ClInclude Include="include\host_media.h" />
+    <ClInclude Include="include\host_netfile.h" />
+    <ClInclude Include="include\host_netjib.h" />
+    <ClInclude Include="include\host_os.h" />
+    <ClInclude Include="include\host_sip.h" />
+    <ClInclude Include="include\host_wave.h" />
+    <ClInclude Include="include\loadtest.h" />
+    <ClInclude Include="include\unittest.h" />
+    <ClInclude Include="include\unittest_scoped.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="libsipstack\testsip.vcxproj">
+      <Project>{40b28df6-4b4a-411a-9eb7-8d80c2a29b9d}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
