@@ -27,6 +27,7 @@
 #define DEBUG_LEVEL 5
 #include <re_dbg.h>
 
+#define HAVE_INET_PTON
 
 #ifndef HAVE_INET_PTON
 
