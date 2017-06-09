@@ -65,7 +65,7 @@
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
     </ClCompile>
     <Lib>
-      <AdditionalDependencies>packet.lib;wpcap.lib;testsip.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)testbench.lib</OutputFile>
       <AdditionalLibraryDirectories>./libpcap/lib;./libsipstack/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
@@ -84,7 +84,7 @@
       </DebugInformationFormat>
     </ClCompile>
     <Lib>
-      <AdditionalDependencies>packet.lib;wpcap.lib;testsip.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)testbench.lib</OutputFile>
       <AdditionalLibraryDirectories>./libpcap/lib;./libsipstack/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
@@ -127,11 +127,6 @@
     <ClCompile Include="source\platform\window\windows_console.cc" />
     <ClCompile Include="source\platform\window\windows_os.cc" />
     <ClCompile Include="source\platform\window\windows_video.cc" />
-    <ClCompile Include="source\pesq\pesq_api.cc" />
-    <ClCompile Include="source\pesq\pesq_dsp.cc" />
-    <ClCompile Include="source\pesq\pesq_filter.cc" />
-    <ClCompile Include="source\pesq\pesq_io.cc" />
-    <ClCompile Include="source\pesq\pesq_mod.cc" />
     <ClCompile Include="source\host_csvfile_unittest.cc" />
     <ClCompile Include="source\host_device_unittest.cc" />
     <ClCompile Include="source\host_netfile_unittest.cc" />
@@ -141,9 +136,6 @@
     <ClInclude Include="source\platform\device_audio.h" />
     <ClInclude Include="source\platform\device_video.h" />
     <ClInclude Include="source\platform\window\windows_os.h" />
-    <ClInclude Include="source\pesq\pesq_api.h" />
-    <ClInclude Include="source\pesq\pesq_dsp.h" />
-    <ClInclude Include="source\pesq\pesq_type.h" />
     <ClInclude Include="include\host.h" />
     <ClInclude Include="include\host_console.h" />
     <ClInclude Include="include\host_csvfile.h" />
@@ -157,12 +149,6 @@
     <ClInclude Include="include\loadtest.h" />
     <ClInclude Include="include\unittest.h" />
     <ClInclude Include="include\unittest_scoped.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="libsipstack\testsip.vcxproj">
-      <Project>{40b28df6-4b4a-411a-9eb7-8d80c2a29b9d}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

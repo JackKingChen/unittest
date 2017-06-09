@@ -13,9 +13,6 @@
     <Filter Include="source\platform\window">
       <UniqueIdentifier>{7d7bb38a-a506-47dd-912d-b7a0971d756d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="source\PESQ">
-      <UniqueIdentifier>{659a9a75-21a9-4fb4-b815-dfc0da099012}</UniqueIdentifier>
-    </Filter>
     <Filter Include="case">
       <UniqueIdentifier>{c72515ce-17ac-45fc-b9a0-2a78a77c67cc}</UniqueIdentifier>
     </Filter>
@@ -90,21 +87,6 @@
     <ClCompile Include="source\platform\window\windows_video.cc">
       <Filter>source\platform\window</Filter>
     </ClCompile>
-    <ClCompile Include="source\pesq\pesq_api.cc">
-      <Filter>source\PESQ</Filter>
-    </ClCompile>
-    <ClCompile Include="source\pesq\pesq_dsp.cc">
-      <Filter>source\PESQ</Filter>
-    </ClCompile>
-    <ClCompile Include="source\pesq\pesq_filter.cc">
-      <Filter>source\PESQ</Filter>
-    </ClCompile>
-    <ClCompile Include="source\pesq\pesq_io.cc">
-      <Filter>source\PESQ</Filter>
-    </ClCompile>
-    <ClCompile Include="source\pesq\pesq_mod.cc">
-      <Filter>source\PESQ</Filter>
-    </ClCompile>
     <ClCompile Include="source\host_csvfile_unittest.cc">
       <Filter>case</Filter>
     </ClCompile>
@@ -127,15 +109,6 @@
     </ClInclude>
     <ClInclude Include="source\platform\window\windows_os.h">
       <Filter>source\platform\window</Filter>
-    </ClInclude>
-    <ClInclude Include="source\pesq\pesq_api.h">
-      <Filter>source\PESQ</Filter>
-    </ClInclude>
-    <ClInclude Include="source\pesq\pesq_dsp.h">
-      <Filter>source\PESQ</Filter>
-    </ClInclude>
-    <ClInclude Include="source\pesq\pesq_type.h">
-      <Filter>source\PESQ</Filter>
     </ClInclude>
     <ClInclude Include="include\host.h">
       <Filter>include</Filter>

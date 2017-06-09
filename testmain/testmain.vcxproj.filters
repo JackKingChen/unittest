@@ -6,24 +6,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\testbench\source\host_console_unittest.cc">
-      <Filter>case</Filter>
-    </ClCompile>
-    <ClCompile Include="..\testbench\source\host_csvfile_unittest.cc">
-      <Filter>case</Filter>
-    </ClCompile>
-    <ClCompile Include="..\testbench\source\host_device_unittest.cc">
-      <Filter>case</Filter>
-    </ClCompile>
-    <ClCompile Include="..\testbench\source\host_netfile_unittest.cc">
-      <Filter>case</Filter>
-    </ClCompile>
-    <ClCompile Include="..\testbench\source\host_pesq_unittest.cc">
-      <Filter>case</Filter>
-    </ClCompile>
-    <ClCompile Include="..\testbench\source\host_sip_unittest.cc">
-      <Filter>case</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp" />
   </ItemGroup>
 </Project>

@@ -95,19 +95,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\testbench\source\host_console_unittest.cc" />
-    <ClCompile Include="..\testbench\source\host_csvfile_unittest.cc" />
-    <ClCompile Include="..\testbench\source\host_device_unittest.cc" />
-    <ClCompile Include="..\testbench\source\host_netfile_unittest.cc" />
-    <ClCompile Include="..\testbench\source\host_pesq_unittest.cc" />
-    <ClCompile Include="..\testbench\source\host_sip_unittest.cc" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\testbench\libsipstack\testsip.vcxproj">
-      <Project>{40b28df6-4b4a-411a-9eb7-8d80c2a29b9d}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
     <ProjectReference Include="..\testbench\testbench.vcxproj">
       <Project>{af4e3e64-1349-400e-85ef-421c8dc11153}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
