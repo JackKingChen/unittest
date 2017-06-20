@@ -13,4 +13,7 @@ Debug
 Debug/
 Release
 Release/
+out
+out/*
+
 
