@@ -13,6 +13,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include <memory>
+
 /*for local*/
 #include "unittest.h"
 
