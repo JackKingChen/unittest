@@ -7,14 +7,25 @@
     <Filter Include="platform\win32">
       <UniqueIdentifier>{01191e03-abea-43ff-93ec-88e00f5d680a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="lock">
+      <UniqueIdentifier>{157f59ba-9e30-4719-ad77-d0cbaad075ef}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="scoped_ptr.cpp" />
+    <ClCompile Include="lock\mutex.cpp">
+      <Filter>lock</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="platform\win32\atomic_count.h">
       <Filter>platform\win32</Filter>
     </ClInclude>
-    <ClInclude Include="guard.h" />
+    <ClInclude Include="lock\mutex.h">
+      <Filter>lock</Filter>
+    </ClInclude>
+    <ClInclude Include="lock\lock.h">
+      <Filter>lock</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

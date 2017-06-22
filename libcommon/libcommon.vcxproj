@@ -11,10 +11,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="lock\mutex.cpp" />
     <ClCompile Include="scoped_ptr.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="guard.h" />
+    <ClInclude Include="lock\lock.h" />
+    <ClInclude Include="lock\mutex.h" />
     <ClInclude Include="platform\win32\atomic_count.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
