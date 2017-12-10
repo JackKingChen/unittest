@@ -60,6 +60,7 @@ int main(int argc, const char* argv[])
 
     srand((unsigned int)time(NULL));
 
+    printf("just test jenkins");
     /*
     * action
     */
