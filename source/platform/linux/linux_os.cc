@@ -192,7 +192,7 @@ namespace host
             }
             else
             {
-                pthread_cancel((pthread_t)handle);
+                //pthread_cancel((pthread_t)handle);
                 pthread_join((pthread_t)handle,NULL);
             }
         }
@@ -331,8 +331,8 @@ namespace host
         /*
         * set cancelable
         */
-        pthread_setcancelstate(PTHREAD_CANCEL_ENABLE,       NULL);
-        pthread_setcanceltype(PTHREAD_CANCEL_ASYNCHRONOUS,  NULL);
+        //pthread_setcancelstate(PTHREAD_CANCEL_ENABLE,       NULL);
+        //pthread_setcanceltype(PTHREAD_CANCEL_ASYNCHRONOUS,  NULL);
 
         if(self)
             self->Proc();

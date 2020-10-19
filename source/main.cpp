@@ -55,34 +55,6 @@ static void display_version (void)
 /*                                                                      */
 /************************************************************************/
 
-#define ADDR_MAX_NUM 100
-#include <execinfo.h>
-void call_back_signal(int sig_no)
-{
-    printf("CALLBACK: SIGNAL: %d\n", sig_no);
-    void *pBuf[ADDR_MAX_NUM] = {0};
-    int addr_num = backtrace(pBuf, ADDR_MAX_NUM);
-    printf("BACKTRACE : NUMBER OF ADDRESS IS %d\n\n", addr_num);
-    char** str_symbols = backtrace_symbols(pBuf, addr_num);
-
-    if(str_symbols == nullptr)
-    {
-        printf("BACKTRACE : CANNOT GET BACKTRACE SYMBOLS\n");
-        return;
-    }
-
-    int i = 0;
-    for(i = 0; i < addr_num; i++)
-    {
-        printf("%03d %s\n", addr_num  - i, str_symbols[i]);
-    }
-    printf("\n");
-    free(str_symbols);
-    str_symbols = nullptr;
-    exit(1);    // QUIT PROCESS. IF NOT, MAYBE ENDLESS LOOP
-
-}
-
 int main(int argc, const char* argv[])
 {
     OSCon the_test("Test$ ");
@@ -90,7 +62,6 @@ int main(int argc, const char* argv[])
     srand((unsigned int)time(NULL));
 
     signal(SIGPIPE, SIG_IGN);           // ignore sigpipe
-    signal(SIGSEGV, call_back_signal);  
 
     /*
     * action
