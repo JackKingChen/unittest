@@ -6,7 +6,8 @@ cd android
 md arm64-v8a
 cd arm64-v8a
 
-set NDK_PATH=E:\Developer\AndroidNDK\android-ndk-r15c
+REM set NDK_PATH=E:\Developer\AndroidNDK\android-ndk-r15c
+set NDK_PATH=C:\Users\Administrator\AppData\Local\Android\Sdk\ndk\20.0.5594570
 set CMAKE=..\\..\\..\\cmake\\android\\windows\\bin\\cmake.exe
 
 set ABI="arm64-v8a"

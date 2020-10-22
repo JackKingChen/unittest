@@ -22,7 +22,7 @@ set(FILES
     source/main.cpp
 )
 
- 
-add_executable(unittest ${FILES})
+add_subdirectory(jsoncpp)
+add_executable(unittest ${FILES} jsoncpp)
 
 # target_link_libraries(unittest)
