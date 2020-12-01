@@ -19,10 +19,15 @@ set(FILES
     source/host_console.cc
     source/host_os.cc
     source/unittest.cc 
+	source/MsQuicClient.cpp 
+	source/MsQuicServer.cpp 
+	source/MsquicStream.cpp
+    source/unittest_msquic_trans.cpp	
     source/main.cpp
 )
 
-add_subdirectory(jsoncpp)
-add_executable(unittest ${FILES} jsoncpp)
-
-# target_link_libraries(unittest)
+link_directories(${CMAKE_SOURCE_DIR}/libs)
+				
+#add_subdirectory(jsoncpp)
+add_executable(unittest ${FILES})
+target_link_libraries(unittest msquic)
