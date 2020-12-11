@@ -35,10 +35,10 @@ enum {
 
 const int DEF_WIDTH             = 1920;
 const int DEF_HEIGHT            = 1080;
-const float DEF_FRAMERATE       = 60.0f;
+const float DEF_FRAMERATE       = 30.0f;
 const int DEF_MAX_PAYLOAD_SIZE  = 64000;
 const int DEF_PROTOCOL          = NDSTREAM_PROTOCOL_TCP;
-const std::string DEF_REMOTE_ADDRESS = "192.168.4.137";
+const std::string DEF_REMOTE_ADDRESS = "192.168.4.203";
 const int DEF_REMOTE_PORT       = 23230;
 
 enum
@@ -331,8 +331,19 @@ void client_protoc_event(ClientContext *cls)
                     {
                         std::cout << "startcasting_resp receving" << std::endl;
 
-                        char* szTmp        = strstr(buffer+4,"\"error_code\":\"");
-                        std::string strCode= szTmp+strlen("\"error_code\":\"");
+                        char* szTmp         = strstr(buffer+4,"\"error_code\":\"");
+                        std::string strCode = szTmp+strlen("\"error_code\":\"");
+                        std::string strWidth;
+                        std::string strHeight;
+
+                        szTmp         = strstr(buffer+4,"\"width\":\"");
+                        strWidth      = szTmp+strlen("\"width\":\"");
+                        szTmp         = strstr(buffer+4,"\"height\":\"");
+                        strHeight     = szTmp+strlen("\"height\":\"");
+
+                        int nWidth = atoi(strWidth.c_str());
+                        int nHeight= atoi(strHeight.c_str());
+                        OSTTY::print(OSTTY::RED,"casting widht=%d,height=%d\n",nWidth,nHeight);
 
                         int  nCode = atoi(strCode.c_str());
 
@@ -340,7 +351,7 @@ void client_protoc_event(ClientContext *cls)
                         {
                             s_cls->m_status = ND_STATUS_CASTING_STATED;
                         #if !UNITTEST_CMD_DATA_SEPART
-                            cls->m_videoSess->init(DEF_WIDTH, DEF_HEIGHT,30,90000.0f,DEF_MAX_PAYLOAD_SIZE,cls->m_videoSock);
+                            cls->m_videoSess->init(/*DEF_WIDTH, DEF_HEIGHT*/nWidth,nHeight,30,90000.0f,DEF_MAX_PAYLOAD_SIZE,cls->m_videoSock);
                             cls->m_videoSess->start();
                         #endif
                         }
@@ -371,26 +382,6 @@ void client_protoc_event(ClientContext *cls)
                         }
                         
                     }
-                    else if (strAction=="change_resolution_notification")
-                    {
-                        char* szTmp          = strstr(buffer+4,"\"width\":\"");
-                        std::string strWidth = szTmp+strlen("\"width\":\"");
-                        szTmp          = strstr(buffer+4,"\"height\":\"");
-                        std::string strHeight= szTmp+strlen("\"height\":\"");
-
-                        int  nWidth = atoi(strWidth.c_str());
-                        int  nHeight= atoi(strHeight.c_str());
-
-                        printf("##=>%d,%d\n",nWidth,nHeight);
-
-                        cls->m_videoSess->init(nWidth, nHeight,30,90000.0f,DEF_MAX_PAYLOAD_SIZE,cls->m_videoSock);
-                        cls->m_videoSess->start();
-                    }
-                    else if (strAction=="pausecasting_notification")
-                    {
-                        cls->m_videoSess->stop();
-                        s_cls->m_status = ND_STATUS_CASTINNG_STOPPED;
-                    }
                     else
                     {
                         printf("strAction=%s do nothing\n",strAction.c_str());
@@ -415,7 +406,6 @@ UNITTEST(nd_connect)
     /*do connect*/
     if (s_cls==nullptr)
     {
-        av_log_set_level(100);
         s_cls              = new ClientContext();
         s_cls->m_videoSess = new NdVideoSession();
     }
@@ -457,10 +447,21 @@ UNITTEST(nd_connect)
 
 }
 
+UNITEST(nd_disconnect)
+{
+#if 0
+    if (s_cls)
+    {
+        if (s_cls->m_videoSess)
+            delete s_cls->m_videoSess;
+        delete s_cls;
+    }
+#endif    
+}
+
 #if !UNITTEST_CMD_DATA_SEPART
 UNITTEST(nd_start)
 {
-
     if (s_cls==nullptr || s_cls->m_status==ND_STATUS_PROTOC_DISCONNECTED)
     {
         printf("not connectd,run \"nd_connect ipaddress\" first\n");

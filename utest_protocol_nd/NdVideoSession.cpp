@@ -108,7 +108,7 @@ bool NdVideoSession::start()
 
             MIPAVCodecEncoder::initAVCodec();
             MIPAVCodecEncoder encoder;
-            result = encoder.init(m_width, m_height, m_frameRate, 0, MIPAVCodecEncoder::CT_H264);
+            result = encoder.init(m_width, m_height, m_frameRate, 6000000, MIPAVCodecEncoder::CT_H264);
             if(!result) {
                 std::cout << encoder.getErrorString() << std::endl;
                 return;
@@ -134,6 +134,15 @@ bool NdVideoSession::start()
                 return;
             }
             std::cout << "MIPRTPComponent OK" << std::endl;
+#if 0
+            MIPDumpFile dumpfile;
+            result = dumpfile.init("~/dumpfile");
+            if (!result)
+            {
+                std::cout << "error message : " << dumpfile.getComponentName() << "=>" << dumpfile.getErrorString();
+                return;
+            }
+#endif
 
             NdHardLink link("mac-screen-video-link", [](const std::string& error_link, const std::string& error_comp, const std::string& error_desc){
                     std::cout << "error link : " << error_link  << "\n"
@@ -177,6 +186,15 @@ bool NdVideoSession::start()
                 std::cout << link.getErrorString() << std::endl;
                 return;
             }
+            #if 0
+            result = link.addConnection(&rtp, &dumpfile);
+            if(!result)
+            {
+                std::cout << link.getErrorString() << std::endl;
+                return;
+            }
+            #endif
+
             std::cout << "Mac Screen Video Link Ok" << std::endl;
             rtp_sess.AddDestination(jrtplib::RTPTCPAddress(m_videoSock));
             result = link.start();

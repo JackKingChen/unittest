@@ -8,7 +8,7 @@ include_directories(${CMAKE_SOURCE_DIR}/libs/include
                     /usr/local/include
                     ./include)
 link_directories(${CMAKE_SOURCE_DIR}/libs
-                /usr/local/lib)
+                ../../ffmpegbuild/lib)
 
 
 add_definitions(-DUSING_TRACE)
@@ -25,8 +25,11 @@ set(FILES
     source/host_os.cc
     source/unittest.cc 
     source/main.cpp
+    utest_hid/hid.cpp
+    utest_hid/utest_hid.cpp
     utest_protocol_nd/NdVideoSession.cpp
-    #utest_protocol_nd/utest_protocol_nd.cpp
+    #utest_ffmpeg/utest_videotoolbox.cpp
+    utest_protocol_nd/utest_protocol_nd.cpp
     #utest_coreaudio/utest_coreaudio.cpp
 )
 
@@ -39,7 +42,10 @@ find_library(lib_iosurface IOSurface)
 
 find_library(lib_coreaudio CoreAudio)
 find_library(lib_AudioUnit AudioUnit)
+find_library(lib_IOSurface IOSurface)
+find_library(lib_Cocoa Cocoa)
+find_library(lib_IOKit IOKit)
  
 add_executable(unittest ${FILES})
 
-target_link_libraries(unittest  emiplib jrtp pthread jthread avcodec swscale avutil SDL2 ${lib_coreaudio} ${lib_AudioUnit} ${lib_coregraphics} ${lib_quartz} ${lib_coreImage} ${lib_iosurface} ${lib_corefoundation})
+target_link_libraries(unittest  emiplib jrtp pthread jthread avcodec swscale avutil ${lib_IOKit} ${lib_Cocoa} ${lib_IOSurface} ${lib_coreaudio} ${lib_AudioUnit} ${lib_coregraphics} ${lib_quartz} ${lib_coreImage} ${lib_iosurface} ${lib_corefoundation})

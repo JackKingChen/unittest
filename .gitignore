@@ -1,0 +1,16 @@
+*.sdf
+*.suo
+*.vcxproj.user
+*.opensdf
+*.rar
+build
+build/
+output
+output/
+ipch
+ipch/
+Debug
+Debug/
+Release
+Release/
+
