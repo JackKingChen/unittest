@@ -7,5 +7,16 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="case\test_injectdll.cpp">
+      <Filter>case</Filter>
+    </ClCompile>
+    <ClCompile Include="case\InjectProc.cpp">
+      <Filter>case</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="case\InjectProc.h">
+      <Filter>case</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
