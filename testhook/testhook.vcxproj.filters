@@ -19,6 +19,9 @@
     <Filter Include="disasm-lib">
       <UniqueIdentifier>{db187534-c487-4467-aa65-c812529b7c1d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ihook-lib">
+      <UniqueIdentifier>{c99d91a0-09a9-4e6e-a36f-1210645f2ba4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
@@ -48,6 +51,9 @@
     <ClInclude Include="disasm-lib\misc.h">
       <Filter>disasm-lib</Filter>
     </ClInclude>
+    <ClInclude Include="ihook-lib\funchook.h">
+      <Filter>ihook-lib</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -73,6 +79,9 @@
     </ClCompile>
     <ClCompile Include="disasm-lib\misc.c">
       <Filter>disasm-lib</Filter>
+    </ClCompile>
+    <ClCompile Include="ihook-lib\funchook.cpp">
+      <Filter>ihook-lib</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

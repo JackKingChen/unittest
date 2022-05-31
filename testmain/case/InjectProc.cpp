@@ -169,3 +169,4 @@ BOOL WINAPI MyInjectProcess(DWORD dwPid,LPCTSTR lpDllPath)
 
 	return CreateThreadForInjectDll(hProcess,lpDllPath);
 }
+
