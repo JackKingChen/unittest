@@ -4,6 +4,15 @@
     <Filter Include="case">
       <UniqueIdentifier>{6b6540d1-1c8e-46b4-9f3d-f26b4c7c4442}</UniqueIdentifier>
     </Filter>
+    <Filter Include="case\arch_x86">
+      <UniqueIdentifier>{48067a35-a0f3-4248-8a15-e51cbb125afa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="common">
+      <UniqueIdentifier>{2adad7d0-098e-40b0-b366-82355fa284e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="common\utils">
+      <UniqueIdentifier>{43b26414-cde0-4668-8469-aeb2b7bc793b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -13,10 +22,37 @@
     <ClCompile Include="case\InjectProc.cpp">
       <Filter>case</Filter>
     </ClCompile>
+    <ClCompile Include="case\InjectAsm.cpp">
+      <Filter>case</Filter>
+    </ClCompile>
+    <ClCompile Include="case\asm\arch\x86\ollyasm\asmserv.c">
+      <Filter>case\arch_x86</Filter>
+    </ClCompile>
+    <ClCompile Include="case\asm\arch\x86\ollyasm\assembl.c">
+      <Filter>case\arch_x86</Filter>
+    </ClCompile>
+    <ClCompile Include="case\asm\arch\x86\ollyasm\disasm.c">
+      <Filter>case\arch_x86</Filter>
+    </ClCompile>
+    <ClCompile Include="common\utils\util.cpp">
+      <Filter>common\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="case\test_injectasm.cpp">
+      <Filter>case</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="case\InjectProc.h">
       <Filter>case</Filter>
+    </ClInclude>
+    <ClInclude Include="case\InjectAsm.h">
+      <Filter>case</Filter>
+    </ClInclude>
+    <ClInclude Include="case\asm\arch\x86\ollyasm\disasm.h">
+      <Filter>case\arch_x86</Filter>
+    </ClInclude>
+    <ClInclude Include="common\utils\util.h">
+      <Filter>common\utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

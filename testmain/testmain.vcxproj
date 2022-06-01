@@ -173,8 +173,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="case\asm\arch\x86\ollyasm\asmserv.c" />
+    <ClCompile Include="case\asm\arch\x86\ollyasm\assembl.c" />
+    <ClCompile Include="case\asm\arch\x86\ollyasm\disasm.c" />
+    <ClCompile Include="case\InjectAsm.cpp" />
     <ClCompile Include="case\InjectProc.cpp" />
+    <ClCompile Include="case\test_injectasm.cpp" />
     <ClCompile Include="case\test_injectdll.cpp" />
+    <ClCompile Include="common\utils\util.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -184,7 +190,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="case\asm\arch\x86\ollyasm\disasm.h" />
+    <ClInclude Include="case\InjectAsm.h" />
     <ClInclude Include="case\InjectProc.h" />
+    <ClInclude Include="common\utils\util.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
