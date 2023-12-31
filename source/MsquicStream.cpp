@@ -1,4 +1,4 @@
-#include "MsquicStream.h"
+#include "msquicstream.h"
 
 #include <algorithm>
 
@@ -19,22 +19,22 @@ QUIC_STATUS MsQuicStream::streamEventCallback(HQUIC stream,void* context,QUIC_ST
     {
     case QUIC_STREAM_EVENT_SEND_COMPLETE:
         if (event->SEND_COMPLETE.Canceled)
-            printf("[strm][%p] Data cacneled\n", stream);
+            LOGI("[strm][%p] Data cacneled\n", stream);
         return pThis->onSendComplete(event);
     case QUIC_STREAM_EVENT_RECEIVE:
         return pThis->onRecv(event);
-        printf("[strm][%p],%p  Data received\n",stream, pThis->m_stream);
-        break;
+
     case QUIC_STREAM_EVENT_PEER_SEND_ABORTED:
-        printf("[strm][%p] Peer aborted\n", stream);
+        LOGI("[strm][%p] Peer aborted\n", stream);
         pThis->m_msQuic->StreamShutdown(stream, QUIC_STREAM_SHUTDOWN_FLAG_ABORT, 0);
         break;
     case QUIC_STREAM_EVENT_PEER_SEND_SHUTDOWN:
-        printf("[strm][%p] Peer shut down\n", stream);
+        LOGI("[strm][%p] Peer shut down\n", stream);
         break;
     case QUIC_STREAM_EVENT_SHUTDOWN_COMPLETE:
-        printf("[strm][%p],%p All done\n", stream,pThis->m_stream);
-        pThis->close();
+        LOGI("[strm][%p],%p All done\n", stream,pThis->m_stream);
+        if (!event->SHUTDOWN_COMPLETE.AppCloseInProgress)
+            pThis->close();
         break;
     case QUIC_STREAM_EVENT_IDEAL_SEND_BUFFER_SIZE:
         break;
@@ -43,7 +43,7 @@ QUIC_STATUS MsQuicStream::streamEventCallback(HQUIC stream,void* context,QUIC_ST
     }
 
     if (pThis->m_event)
-        return pThis->m_event(event);
+        return pThis->m_event(stream, context, event);
 
     return QUIC_STATUS_SUCCESS;
 }
@@ -182,7 +182,7 @@ int  MsQuicStream::recv(unsigned char* buffer, size_t length, int timeout)
     while (!m_recvBufferQueue.empty() && nRecvMax>0)
     {
         QuicBuffer  quicBuffer = m_recvBufferQueue.front();
-        size_t      nRecvBytes = std::min(quicBuffer.length-quicBuffer.offset,nRecvMax);
+        size_t      nRecvBytes = (std::min)(quicBuffer.length-quicBuffer.offset,nRecvMax);
 
         memcpy(buffer+retval,quicBuffer.buffer+quicBuffer.offset,nRecvBytes);
         nRecvMax          -= nRecvBytes;
@@ -251,11 +251,10 @@ int  MsQuicSelect(MsQuicStream* stream[], int8_t *readflags, size_t count, int d
                 readflags[i]=1;
             }
         }
-
     }
 
     if (!bAvailable)
-    {/*no data,waiting;FIXME: should poll*/
+    {/*no data,waiting; FIXME: should poll*/
         for (size_t i=0; i<count; i++)
         {
             if (stream[i])

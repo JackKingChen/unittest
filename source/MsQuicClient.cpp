@@ -1,23 +1,20 @@
 
-#include "MsQuicClient.h"
+#include "msquicclient.h"
 
-#define LOGE(format,...)  printf("MsQuicClient:Error:" format,##__VA_ARGS__)
-#define LOGI(format,...)  printf("MsQuicClient:INFO:" format,##__VA_ARGS__)
-
-MsQuicClient::MsQuicClient(const std::string& name) : m_name(name)
+MsQuicClient::MsQuicClient(const std::string& strName)
 {
     QUIC_STATUS status = QUIC_STATUS_SUCCESS;
-
     /*initializes the MsQuic library and returns a the API function table.*/
-    if (QUIC_FAILED(status = MsQuicOpen(&m_msQuic)))
+    if (QUIC_FAILED(status = MsQuicOpen2(&m_msQuic)))
     {
-        LOGE("MsQuicOpen failed, 0x%x!\n", status);
+        printf("MsQuicOpen failed, 0x%x!\n", status);
         return;
     }
 
+    const QUIC_REGISTRATION_CONFIG RegConfig = { strName.c_str(), QUIC_EXECUTION_PROFILE_LOW_LATENCY };
     /*register connections*/
-    if (QUIC_FAILED(status = m_msQuic->RegistrationOpen(&m_regConfig, &m_registration))) {
-        LOGE("RegistrationOpen failed, 0x%x!\n", status);
+    if (QUIC_FAILED(status = m_msQuic->RegistrationOpen(&RegConfig, &m_registration))) {
+        printf("RegistrationOpen failed, 0x%x!\n", status);
         return;
     }
 
@@ -35,12 +32,12 @@ MsQuicClient::MsQuicClient(const std::string& name) : m_name(name)
 
     QUIC_BUFFER Alpn = { sizeof("sample") - 1, (uint8_t*)"sample" };
     if (QUIC_FAILED(status = m_msQuic->ConfigurationOpen(m_registration, &Alpn, 1, &Settings, sizeof(Settings), nullptr, &m_configration))) {
-        LOGE("ConfigurationOpen failed, 0x%x!\n", status);
+        printf("ConfigurationOpen failed, 0x%x!\n", status);
         return;
     }
 
     if (QUIC_FAILED(status = m_msQuic->ConfigurationLoadCredential(m_configration, &CredConfig))) {
-        LOGE("ConfigurationLoadCredential failed, 0x%x!\n", status);
+        printf("ConfigurationLoadCredential failed, 0x%x!\n", status);
         return;
     }
 }
@@ -110,7 +107,7 @@ QUIC_STATUS MsQuicClient::clientConnectionCallback(HQUIC connection,void* Contex
     }
 
     if (pThis->m_connectCallback)
-        return pThis->m_connectCallback(event);
+        return pThis->m_connectCallback(connection, Context, event);
 
     return QUIC_STATUS_SUCCESS;
 }
@@ -162,8 +159,9 @@ MsQuicStream* MsQuicClient::createStream(const func_stream_event& callback)
     {
         MsQuicStream* pStream = new MsQuicStream(m_msQuic,m_connection);
 
-        if (pStream->open(nullptr,callback))
+        if (pStream->open(nullptr,callback)) {
             return pStream;
+        }   
 
         delete pStream;
     }

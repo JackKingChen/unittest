@@ -10,6 +10,11 @@
 
 #pragma once
 
+//
+// Necessary when SAL isn't supported to tell compiler it's not necessary.
+//
+#define INIT_NO_SAL(X) = X
+
 #ifndef _Must_inspect_result_
 #define _Must_inspect_result_
 #endif
@@ -84,6 +89,10 @@
 
 #ifndef _In_reads_opt_z_
 #define _In_reads_opt_z_(...)
+#endif
+
+#ifndef _In_reads_or_z_opt_
+#define _In_reads_or_z_opt_(...)
 #endif
 
 #ifndef _Out_writes_bytes_opt_
@@ -242,6 +251,10 @@
 #define _Ret_range_(...)
 #endif
 
+#ifndef _Ret_writes_bytes_
+#define _Ret_writes_bytes_(...)
+#endif
+
 #ifndef _Printf_format_string_
 #define _Printf_format_string_
 #endif
@@ -256,6 +269,10 @@
 
 #ifndef _At_
 #define _At_(...)
+#endif
+
+#ifndef _Check_return_
+#define _Check_return_
 #endif
 
 #endif // _SAL_STUB_H

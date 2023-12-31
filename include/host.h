@@ -21,7 +21,10 @@
 #include <errno.h>
 #include <time.h>
 #include <math.h>
+
+#ifndef WIN32
 #include <unistd.h>
+#endif
 
 #include <string>
 #include <istream>
@@ -41,7 +44,7 @@
 /*depends on makefile*/
 #ifdef  WIN32
 #define  OS_WINDOWS     1
-#define  OS_WINDOWS_AFX 1
+//#define  OS_WINDOWS_AFX 1
 #include <io.h>
 #else
 #define  OS_LINUX       1

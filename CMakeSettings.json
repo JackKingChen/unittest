@@ -1,0 +1,74 @@
+﻿{
+  "configurations": [
+    {
+      "name": "arm64-v8a-debug",
+      "generator": "Ninja",
+      "configurationType": "Debug",
+      "buildRoot": "${projectDir}\\out\\build\\${name}",
+      "installRoot": "${projectDir}\\out\\install\\${name}",
+      "cmakeCommandArgs": "-DANDROID_ABI=\"arm64-v8a\" -DANDROID_NATIVE_API_LEVEL=28",
+      "buildCommandArgs": "",
+      "ctestCommandArgs": "",
+      "inheritEnvironments": [ "gcc-arm" ],
+      "cmakeToolchain": "D:/Android/android-ndk/android-ndk-r21e/build/cmake/android.toolchain.cmake"
+    },
+    {
+      "name": "arm64-v8a-release",
+      "generator": "Ninja",
+      "configurationType": "Release",
+      "buildRoot": "${projectDir}\\out\\build\\${name}",
+      "installRoot": "${projectDir}\\out\\install\\${name}",
+      "cmakeCommandArgs": "-DANDROID_ABI=\"arm64-v8a\" -DANDROID_NATIVE_API_LEVEL=29",
+      "buildCommandArgs": "",
+      "ctestCommandArgs": "",
+      "cmakeToolchain": "D:/Android/android-ndk/android-ndk-r21e/build/cmake/android.toolchain.cmake",
+      "inheritEnvironments": [ "gcc-arm" ]
+    },
+    {
+      "name": "linux-clang-debug",
+      "generator": "Unix Makefiles",
+      "configurationType": "Debug",
+      "cmakeExecutable": "cmake",
+      "remoteCopySourcesExclusionList": [ ".vs", ".git", "out" ],
+      "cmakeCommandArgs": "",
+      "buildCommandArgs": "",
+      "ctestCommandArgs": "",
+      "inheritEnvironments": [ "linux_clang_x64" ],
+      "remoteMachineName": "${defaultRemoteMachineName}",
+      "remoteCMakeListsRoot": "$HOME/.vs/${projectDirName}/${workspaceHash}/src",
+      "remoteBuildRoot": "$HOME/.vs/${projectDirName}/${workspaceHash}/out/build/${name}",
+      "remoteInstallRoot": "$HOME/.vs/${projectDirName}/${workspaceHash}/out/install/${name}",
+      "remoteCopySources": true,
+      "rsyncCommandArgs": "-t --delete",
+      "remoteCopyBuildOutput": false,
+      "remoteCopySourcesMethod": "rsync",
+      "remotePrebuildCommand": "export LD_LIBRARY_PATH=$LA_LIBRARY_PATH:/lib64",
+      "remotePreGenerateCommand": "export LD_LIBRARY_PATH=$LA_LIBRARY_PATH:/lib64",
+      "remotePostbuildCommand": "export LD_LIBRARY_PATH=$LA_LIBRARY_PATH:/lib64"
+    },
+    {
+      "name": "android-x64-release",
+      "generator": "Ninja",
+      "configurationType": "Release",
+      "buildRoot": "${projectDir}\\out\\build\\${name}",
+      "installRoot": "${projectDir}\\out\\install\\${name}",
+      "cmakeCommandArgs": "-DANDROID_ABI=\"x86_64\" -DANDROID_NATIVE_API_LEVEL=29",
+      "buildCommandArgs": "",
+      "ctestCommandArgs": "",
+      "cmakeToolchain": "D:/Android/android-ndk/android-ndk-r21e/build/cmake/android.toolchain.cmake",
+      "inheritEnvironments": [ "gcc-arm" ]
+    },
+    {
+      "name": "x64-Debug",
+      "generator": "Ninja",
+      "configurationType": "Debug",
+      "buildRoot": "${projectDir}\\out\\build\\${name}",
+      "installRoot": "${projectDir}\\out\\install\\${name}",
+      "cmakeCommandArgs": "",
+      "buildCommandArgs": "",
+      "ctestCommandArgs": "",
+      "inheritEnvironments": [ "msvc_x64_x64" ],
+      "variables": []
+    }
+  ]
+}

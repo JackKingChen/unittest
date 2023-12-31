@@ -2,8 +2,9 @@
 #include <msquic.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <thread>
 
-#include "MsQuicServer.h"
+#include "msquicserver.h"
 
 static const QUIC_BUFFER Alpn = { sizeof("sample") - 1, (uint8_t*)"sample" };
 
@@ -11,14 +12,16 @@ static const uint64_t IdleTimeoutMs = 10000;
 
 const QUIC_API_TABLE* MsQuicServer::s_msQuicApi = nullptr;
 
-MsQuicServer::MsQuicServer(const std::string& name, unsigned short port, const QUIC_REGISTRATION_CONFIG& regConfig)
-    : m_svrName(name),m_udpPort(port),m_regConfig(regConfig)
+MsQuicServer::MsQuicServer(const std::string& name, unsigned short port)
+    : m_svrName(name),m_udpPort(port)
 {
+    m_regConfig.AppName = m_svrName.c_str();
+    m_regConfig.ExecutionProfile = QUIC_EXECUTION_PROFILE_LOW_LATENCY;
 }
 
 MsQuicServer::~MsQuicServer(void)
 {
-    exit();
+    this->exit();
 }
 
 bool  MsQuicServer::serverLoadConfiguration(const char* Cert,const char* KeyFile)
@@ -61,11 +64,48 @@ bool  MsQuicServer::serverLoadConfiguration(const char* Cert,const char* KeyFile
     return true;
 }
 
+bool MsQuicServer::serverLoadConfiguration(const QUIC_CERTIFICATE_HASH& certHash)
+{
+    QUIC_SETTINGS Settings{ 0 };
+
+    Settings.IdleTimeoutMs = IdleTimeoutMs;
+    Settings.IsSet.IdleTimeoutMs = TRUE;
+
+    Settings.ServerResumptionLevel = QUIC_SERVER_RESUME_AND_ZERORTT;
+    Settings.IsSet.ServerResumptionLevel = TRUE;
+    //
+    // Configures the server's settings to allow for the peer to open a single
+    // bidirectional stream. By default connections are not configured to allow
+    // any streams from the peer.
+    //
+    Settings.PeerBidiStreamCount = 2;
+    Settings.IsSet.PeerBidiStreamCount = TRUE;
+
+    QUIC_CREDENTIAL_CONFIG CredConfig;
+
+    memset(&CredConfig, 0, sizeof(QUIC_CREDENTIAL_CONFIG));
+    CredConfig.Type = QUIC_CREDENTIAL_TYPE_CERTIFICATE_HASH;
+    CredConfig.CertificateHash = const_cast<QUIC_CERTIFICATE_HASH*>(&certHash);
+
+    QUIC_STATUS Status = QUIC_STATUS_SUCCESS;
+    if (QUIC_FAILED(Status = s_msQuicApi->ConfigurationOpen(m_registration, &Alpn, 1, &Settings, sizeof(Settings), nullptr, &m_configuration))) {
+        printf("ConfigurationOpen failed, 0x%x!\n", Status);
+        return false;
+    }
+
+    if (QUIC_FAILED(Status = s_msQuicApi->ConfigurationLoadCredential(m_configuration, &CredConfig))) {
+        printf("ConfigurationLoadCredential failed, 0x%x!\n", Status);
+        return false;
+    }
+
+    return true;
+}
+
 bool  MsQuicServer::init(const std::string& strCertFile, const std::string& strKeyFile)
 {
     QUIC_STATUS Status = QUIC_STATUS_SUCCESS;
 
-    if (QUIC_FAILED(Status = MsQuicOpen(&s_msQuicApi))) {
+    if (QUIC_FAILED(Status = MsQuicOpen2(&s_msQuicApi))) {
         printf("MsQuicOpen failed, 0x%x!\n", Status);
         return false;
     }
@@ -82,6 +122,80 @@ bool  MsQuicServer::init(const std::string& strCertFile, const std::string& strK
 
     return true;
 }
+#if defined(_WIN32) || defined(_WIN64)
+uint8_t
+DecodeHexChar(
+    _In_ char c
+)
+{
+    if (c >= '0' && c <= '9') return c - '0';
+    if (c >= 'A' && c <= 'F') return 10 + c - 'A';
+    if (c >= 'a' && c <= 'f') return 10 + c - 'a';
+    return 0;
+}
+
+//
+// Helper function to convert a string of hex characters to a byte buffer.
+//
+uint32_t
+DecodeHexBuffer(
+    _In_z_ const char* HexBuffer,
+    _In_ uint32_t OutBufferLen,
+    _Out_writes_to_(OutBufferLen, return)
+    uint8_t* OutBuffer
+)
+{
+    uint32_t HexBufferLen = (uint32_t)strlen(HexBuffer) / 2;
+    if (HexBufferLen > OutBufferLen) {
+        return 0;
+    }
+
+    for (uint32_t i = 0; i < HexBufferLen; i++) {
+        OutBuffer[i] =
+            (DecodeHexChar(HexBuffer[i * 2]) << 4) |
+            DecodeHexChar(HexBuffer[i * 2 + 1]);
+    }
+
+    return HexBufferLen;
+}
+
+
+bool  MsQuicServer::init(const std::string& strHash)
+{
+    QUIC_STATUS Status = QUIC_STATUS_SUCCESS;
+
+    if (QUIC_FAILED(Status = MsQuicOpen2(&s_msQuicApi))) {
+        printf("MsQuicOpen failed, 0x%x!\n", Status);
+        return false;
+    }
+    if (QUIC_FAILED(Status = s_msQuicApi->RegistrationOpen(&m_regConfig, &m_registration))) {
+        printf("RegistrationOpen failed, 0x%x!\n", Status);
+        MsQuicClose(s_msQuicApi);
+        s_msQuicApi = nullptr;
+        return false;
+    }
+
+    QUIC_CERTIFICATE_HASH CertHash;
+    uint32_t CertHashLen =
+        DecodeHexBuffer(
+            strHash.c_str(),
+            sizeof(CertHash.ShaHash),
+            CertHash.ShaHash);
+    if (CertHashLen != sizeof(CertHash.ShaHash)) {
+        MsQuicClose(s_msQuicApi);
+        s_msQuicApi = nullptr;
+        return false;
+    }
+
+    if (!serverLoadConfiguration(CertHash)) {
+        MsQuicClose(s_msQuicApi);
+        s_msQuicApi = nullptr;
+        return false;
+    }
+
+    return true;
+}
+#endif
 
 void  MsQuicServer::exit(void)
 {
@@ -109,7 +223,12 @@ QUIC_STATUS MsQuicServer::serverConnectionCallback(HQUIC connection,void* contex
         s_msQuicApi->ConnectionSendResumptionTicket(connection, QUIC_SEND_RESUMPTION_FLAG_NONE, 0, NULL);
         break;
     case QUIC_CONNECTION_EVENT_SHUTDOWN_INITIATED_BY_TRANSPORT:
-        printf("[conn][%p] Shut down by transport, 0x%x\n", connection, Event->SHUTDOWN_INITIATED_BY_TRANSPORT.Status);
+        if (Event->SHUTDOWN_INITIATED_BY_TRANSPORT.Status == QUIC_STATUS_CONNECTION_IDLE) {
+            printf("[conn][%p] Successfully shut down on idle.\n", connection);
+        }
+        else {
+            printf("[conn][%p] Shut down by transport, 0x%x\n", connection, Event->SHUTDOWN_INITIATED_BY_TRANSPORT.Status);
+        }
         break;
     case QUIC_CONNECTION_EVENT_SHUTDOWN_INITIATED_BY_PEER:
         printf("[conn][%p] Shut down by peer, 0x%llu\n", connection, (unsigned long long)Event->SHUTDOWN_INITIATED_BY_PEER.ErrorCode);
@@ -192,41 +311,35 @@ void  MsQuicServer::destoryStream(const MsQuicStream* stream)
     delete stream;
 }
 
-void  MsQuicServer::start(void)
+bool  MsQuicServer::start(void)
 {
-    m_asyncFuture = std::async(std::launch::async,[this] {
-        QUIC_STATUS     status;
-        HQUIC Listener = nullptr;
+    QUIC_STATUS     status;
 
-        QUIC_ADDR Address = {};
-        QuicAddrSetFamily(&Address, QUIC_ADDRESS_FAMILY_UNSPEC);
-        QuicAddrSetPort(&Address, m_udpPort);
+    QUIC_ADDR Address = {};
+    QuicAddrSetFamily(&Address, QUIC_ADDRESS_FAMILY_UNSPEC);
+    QuicAddrSetPort(&Address, m_udpPort);
 
-        if (QUIC_FAILED(status = s_msQuicApi->ListenerOpen(m_registration, serverListenCallback, this, &Listener))) {
-            printf("ListenerOpen failed, 0x%x!\n", status);
-            return false;
-        }
+    if (QUIC_FAILED(status = s_msQuicApi->ListenerOpen(m_registration, serverListenCallback, this, &m_listener))) {
+        printf("ListenerOpen failed, 0x%x!\n", status);
+        return false;
+    }
 
-        if (QUIC_FAILED(status = s_msQuicApi->ListenerStart(Listener, &Alpn, 1, &Address))) {
-            printf("ListenerStart failed, 0x%x!\n", status);
-            s_msQuicApi->ListenerClose(Listener);
-            return false;
-        }
+    if (QUIC_FAILED(status = s_msQuicApi->ListenerStart(m_listener, &Alpn, 1, &Address))) {
+        printf("ListenerStart failed, 0x%x!\n", status);
+        s_msQuicApi->ListenerClose(m_listener);
+        m_listener = nullptr;
+        return false;
+    }
 
-        while (m_bKeepRunning) {
-            usleep(5000);
-        }
-
-        if (Listener != nullptr) {
-            s_msQuicApi->ListenerClose(Listener);
-        }
-        return  true;
-    });
+   
+    return  true;
 
 }
 
 void  MsQuicServer::stop(void)
 {
-    m_bKeepRunning = false;
-    m_asyncFuture.get();
+    if (m_listener != nullptr) {
+        s_msQuicApi->ListenerClose(m_listener);
+        m_listener = nullptr;
+    }
 }

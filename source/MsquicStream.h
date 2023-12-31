@@ -1,7 +1,7 @@
 #ifndef MSQUICSTREAM_H
 #define MSQUICSTREAM_H
 
-#include "msquic/msquic.h"
+#include "msquic.h"
 
 #include <functional>
 #include <condition_variable>
@@ -9,7 +9,7 @@
 #include <mutex>
 #include <atomic>
 
-using func_stream_event  = std::function<QUIC_STATUS(QUIC_STREAM_EVENT* event)>;
+using func_stream_event  = std::function<QUIC_STATUS(HQUIC stream, void* context, QUIC_STREAM_EVENT* event)>;
 
 class MsQuicStream
 {
@@ -59,5 +59,29 @@ private:
 };
 
 int  MsQuicSelect(MsQuicStream* stream[], int8_t *readflags, size_t count, int delay);
+
+//#ifdef WIN32
+#if 1
+#define LOGE(format,...)  printf("MsQuicClient:Error:" format,##__VA_ARGS__)
+#define LOGI(format,...)  printf("MsQuicClient:INFO:" format,##__VA_ARGS__)
+#else
+#include <android/log.h>
+static void LOGI(const char* format, ...)//  __android_log_vprint(ANDROID_LOG_INFO, "MsQuicClient", format, ##__VA_ARGS__);
+{
+    char strBuffer[1024];
+    va_list args;
+    va_start(args, format);
+    __android_log_vprint(ANDROID_LOG_INFO, "MsQuicClient", format, args);
+    va_end(args);
+}
+static void LOGE(const char* format, ...)//  __android_log_vprint(ANDROID_LOG_INFO, "MsQuicClient", format, ##__VA_ARGS__);
+{
+    char strBuffer[1024];
+    va_list args;
+    va_start(args, format);
+    __android_log_vprint(ANDROID_LOG_INFO, "MsQuicClient", format, args);
+    va_end(args);
+}
+#endif
 
 #endif // MSQUICSTREAM_H

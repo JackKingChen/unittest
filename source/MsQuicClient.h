@@ -8,14 +8,14 @@
 
 #include "msquic.h"
 
-#include "MsquicStream.h"
+#include "msquicstream.h"
 
-using func_connect_event = std::function<QUIC_STATUS(QUIC_CONNECTION_EVENT* event)>;
+using func_connect_event = std::function<QUIC_STATUS(HQUIC connection, void* Context, QUIC_CONNECTION_EVENT* event)>;
 
 class MsQuicClient
 {
 public:
-    MsQuicClient(const std::string& name);
+    MsQuicClient(const std::string& strName);
     ~MsQuicClient(void);
 
     /*connect*/
@@ -35,9 +35,6 @@ private:
     func_connect_event       m_connectCallback = nullptr;
 
     static QUIC_STATUS clientConnectionCallback(HQUIC Connection,void* Context ,QUIC_CONNECTION_EVENT* event);
-
-    std::string               m_name;
-    QUIC_REGISTRATION_CONFIG  m_regConfig;
 
     const QUIC_API_TABLE  *m_msQuic = nullptr;
     HQUIC            m_registration = nullptr;
