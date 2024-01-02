@@ -14,11 +14,9 @@ public:
     CaeQuicClient(const std::string& strName);
     ~CaeQuicClient(void);
 
-    bool  send(const unsigned char* buffer, size_t length);
-    int   recv(unsigned char* buffer, size_t length, int timeout);
 
     /*connect*/
-    bool  connect(const char* target, unsigned short port, const func_connect_event& callback = nullptr);
+    bool  connect(const char* target, unsigned short port);
     bool  waitForConnected(int timeout = 10000/*ms*/);
 
 private:
@@ -35,7 +33,6 @@ private:
     bool                     m_bConnectedFailed = false;
     std::mutex               m_connMutex;
     std::condition_variable  m_condConn;
-    func_connect_event       m_connectCallback = nullptr;
 
     static QUIC_STATUS clientConnectionCallback(HQUIC Connection, void* Context, QUIC_CONNECTION_EVENT* event);
 

@@ -106,9 +106,6 @@ QUIC_STATUS CaeQuicClient::clientConnectionCallback(HQUIC connection, void* Cont
         }
     }
 
-    if (pThis->m_connectCallback)
-        return pThis->m_connectCallback(connection, Context, event);
-
     return QUIC_STATUS_SUCCESS;
 }
 
@@ -149,13 +146,4 @@ bool CaeQuicClient::waitForConnected(int timeout)
         return false;
 
     return m_bConnectedFailed;
-}
-
-bool  CaeQuicClient::send(const unsigned char* buffer, size_t length)
-{
-    return true;
-}
-int   CaeQuicClient::recv(unsigned char* buffer, size_t length, int timeout)
-{
-    return 0;
 }
